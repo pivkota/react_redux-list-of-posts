@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { setSelectedUserId } from '../features/usersSlice';
+import { setSelectedUserId } from '../features/authorSlice';
 
 export const UserSelector: React.FC = () => {
   const [selectIsOpen, setSelectIsOpen] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  const { items: users, selectedUserId } = useAppSelector(state => state.users);
+  const { items: users } = useAppSelector(state => state.users);
+  const { selectedUserId } = useAppSelector(state => state.author);
 
   const currentUser = users.find(user => user.id === selectedUserId) || null;
 
@@ -71,7 +72,6 @@ export const UserSelector: React.FC = () => {
               onClick={e => {
                 e.preventDefault();
                 e.stopPropagation();
-                // Диспатчимо зміну ID в Redux
                 dispatch(setSelectedUserId(user.id));
                 setSelectIsOpen(false);
               }}

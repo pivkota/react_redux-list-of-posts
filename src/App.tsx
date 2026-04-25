@@ -24,7 +24,7 @@ import { setUsers, setUsersError } from './features/usersSlice';
 export const App = () => {
   const dispatch = useAppDispatch();
 
-  const { selectedUserId } = useAppSelector(state => state.users);
+  const { selectedUserId } = useAppSelector(state => state.author);
   const {
     items: posts,
     loaded,
